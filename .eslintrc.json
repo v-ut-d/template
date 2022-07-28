@@ -15,11 +15,31 @@
     "sourceType": "module"
   },
   "rules": {
-    "@typescript-eslint/no-unused-vars": ["warn", {
-      "varsIgnorePattern": "^_",
-      "argsIgnorePattern": "^_",
-      "destructuredArrayIgnorePattern": "^_",
-      "caughtErrorsIgnorePattern": "^_"
-    }]
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": ["error"],
+    "@typescript-eslint/explicit-member-accessibility": ["error"],
+    "@typescript-eslint/method-signature-style": ["error", "method"],
+    "@typescript-eslint/naming-convention": [
+      "warn",
+      { "selector": "default", "format": ["camelCase"] },
+      { "selector": "typeLike", "format": ["PascalCase"] },
+      {
+        "selector": "variable",
+        "modifiers": ["const", "global"],
+        "format": ["camelCase", "UPPER_CASE"]
+      }
+    ],
+    "@typescript-eslint/prefer-readonly": ["warn"],
+    "@typescript-eslint/promise-function-async": ["error"],
+    "@typescript-eslint/sort-type-union-intersection-members": ["error"],
+    "@typescript-eslint/switch-exhaustiveness-check": ["error"]
   }
 }
