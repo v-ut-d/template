@@ -1,0 +1,15 @@
+{
+  "extends": "@tsconfig/strictest",
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext"],
+
+    "module": "commonjs",
+    "resolveJsonModule": true,
+
+    "sourceMap": true,
+    "outDir": "./dist",
+    "noEmitOnError": true
+  },
+  "include": ["src/**/*.ts"]
+}
