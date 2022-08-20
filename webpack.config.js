@@ -1,7 +1,7 @@
-const path = require('path');
+import path from 'path';
 
 /** @type {import('webpack').Configuration} */
-module.exports = {
+export default {
   mode: 'production',
   target: 'node',
   entry: './src/main.ts',
@@ -23,9 +23,12 @@ module.exports = {
     minimize: false,
     nodeEnv: 'production',
   },
+  experiments: {
+    topLevelAwait: true,
+  },
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.cjs',
+    path: path.resolve(process.cwd(), 'dist'),
     iife: false,
   },
 };
