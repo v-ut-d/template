@@ -2,6 +2,7 @@ on:
   push:
     tags:
       - '*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,3 +28,22 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+    - uses: 'google-github-actions/auth@v0'
+      with:
+        workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDP }}
+        service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+    - uses: 'google-github-actions/ssh-compute@v0'
+      with:
+        instance_name: ${{ secrets.GCP_INSTANCE_NAME }}
+        zone: 'us-west-1b'
+        ssh_key: ${{ secrets.GCP_SSH_KEY }}
+        command: |
+          NAME=$(echo ${{ github.repository }} | sed -e 's#.*/##')
+          docker rm $NAME
+          docker run --name $NAME ghcr.io/${{ github.repository }}:latest
+
