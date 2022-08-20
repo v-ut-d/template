@@ -19,7 +19,7 @@ jobs:
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: ghcr.io/v-ut-d/template
+          images: ghcr.io/${{ github.repository }}
           tags: |
             type=semver,pattern={{version}}
       - uses: docker/build-push-action@v3
@@ -45,5 +45,5 @@ jobs:
         command: |
           NAME=$(echo ${{ github.repository }} | sed -e 's#.*/##')
           docker rm $NAME
-          docker run --name $NAME ghcr.io/${{ github.repository }}:latest
+          docker run --name $NAME --env-file /var/bots/$NAME.env ghcr.io/${{ github.repository }}:latest
 
