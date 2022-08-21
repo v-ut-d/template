@@ -47,6 +47,6 @@ jobs:
         ssh_private_key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
         command: |
           NAME=$(echo ${{ github.repository }} | sed -e 's#.*/##')
-          docker rm $NAME
-          docker run --name $NAME --env-file /var/bots/$NAME.env ghcr.io/${{ github.repository }}:latest
+          sudo docker rm $NAME
+          sudo docker run --name $NAME --env-file /var/bots/$NAME.env ghcr.io/${{ github.repository }}:latest
 
