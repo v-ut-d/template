@@ -44,7 +44,7 @@ jobs:
       with:
         instance_name: ${{ secrets.GCP_INSTANCE_NAME }}
         zone: 'us-west1-b'
-        ssh_private_key: ${{ secrets.GCP_SSH_KEY }}
+        ssh_private_key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
         command: |
           NAME=$(echo ${{ github.repository }} | sed -e 's#.*/##')
           docker rm $NAME
