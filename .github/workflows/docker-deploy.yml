@@ -40,4 +40,4 @@ jobs:
         env:
           WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
         run: |
-          curl -X POST -d '{"repository": "${{ github.repository }}"}' "$WEBHOOK_URL"
+          curl -s -X POST -d '{"repository": "${{ github.repository }}"}' "$WEBHOOK_URL"
